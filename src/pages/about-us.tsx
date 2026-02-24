@@ -67,12 +67,12 @@ export default function AboutUs({ employees }: Props) {
                                   : 'flex flex-col space-y-4'
                               }
                             >
-                              <div className="aspect-h-2 aspect-w-3">
+                              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                                 <Image
                                   src={'/' + employee.data.img}
-                                  layout="fill"
+                                  fill
+                                  style={{ objectFit: 'cover' }}
                                   alt={employee.data.name}
-                                  objectFit="cover"
                                 />
                               </div>
 
@@ -93,10 +93,9 @@ export default function AboutUs({ employees }: Props) {
                                 <div className="justify-end">
                                   <Link
                                     href={'/about-us/' + employee.data.slug}
+                                    className="cursor-pointer text-blue-500 underline"
                                   >
-                                    <a className="cursor-pointer text-blue-500 underline">
-                                      Read more
-                                    </a>
+                                    Read more
                                   </Link>
                                 </div>
                               )}
