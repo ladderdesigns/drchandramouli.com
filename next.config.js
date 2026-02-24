@@ -4,15 +4,12 @@ module.exports = {
     dirs: ['src'],
   },
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
   reactStrictMode: true,
-  webpack: (cfg) => {
-    cfg.module.rules.push({
-      test: /\.md$/,
-      loader: 'frontmatter-markdown-loader',
-      options: { mode: ['react-component'] },
-    });
-    return cfg;
-  },
 };
