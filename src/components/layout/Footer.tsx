@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { SVGProps } from 'react';
+import React, { SVGProps } from 'react';
 
 const navigation = {
   links: [
@@ -9,7 +9,7 @@ const navigation = {
     { name: `Patient Forms`, href: `/patient-forms` },
     { name: `About Us`, href: `/about-us` },
     { name: `Contact`, href: `/contact` },
-    { name: `FAQ`, href: `/contact/faq` },
+    { name: `FAQ`, href: `/faq` },
   ],
   support: [
     {
@@ -38,7 +38,9 @@ const navigation = {
       name: `Facebook`,
       href: `#`,
       displayName: 'hello',
-      icon: (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
+      icon: (
+        props: React.JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+      ) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -51,7 +53,9 @@ const navigation = {
     {
       name: `Instagram`,
       href: `#`,
-      icon: (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
+      icon: (
+        props: React.JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+      ) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -64,7 +68,9 @@ const navigation = {
     {
       name: `Twitter`,
       href: `#`,
-      icon: (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
+      icon: (
+        props: React.JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+      ) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
         </svg>
@@ -73,7 +79,9 @@ const navigation = {
     {
       name: `GitHub`,
       href: `#`,
-      icon: (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
+      icon: (
+        props: React.JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+      ) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -86,7 +94,9 @@ const navigation = {
     {
       name: `Dribbble`,
       href: `#`,
-      icon: (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
+      icon: (
+        props: React.JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+      ) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -106,17 +116,16 @@ export default function Footer() {
         Footer
       </h2>
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="xl:gap-8 xl:grid xl:grid-cols-3">
+        <div className="xl:gap-8 xl:grid xl:grid-cols-4">
           <div className="space-y-8 xl:col-span-1">
             <Link href="/">
-              <a>
-                <Image
-                  width={150}
-                  height={150}
-                  src="/logo2.svg"
-                  alt="Chandramouli logo"
-                />
-              </a>
+              <Image
+                width={120}
+                height={120}
+                src="/logo2.svg"
+                alt="Chandramouli logo"
+                className="h-28 w-auto"
+              />
             </Link>
             <p className="text-base text-gray-500">
               Let our family take care of yours.
@@ -134,7 +143,7 @@ export default function Footer() {
               ))}
             </div> */}
           </div>
-          <div className="gap-8 grid grid-cols-1 mt-12 md:grid-cols-2 xl:col-span-2 xl:mt-0">
+          <div className="gap-8 grid grid-cols-1 mt-12 md:grid-cols-2 xl:col-span-3 xl:mt-0">
             <div className="md:gap-8 md:grid md:grid-cols-2">
               <div>
                 <h3 className="font-semibold text-gray-500 text-sm tracking-wider uppercase">
@@ -143,13 +152,11 @@ export default function Footer() {
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.links.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href}>
-                        <a
-                          href={item.href}
-                          className="hover:text-gray-900 text-base text-gray-500"
-                        >
-                          {item.name}
-                        </a>
+                      <Link
+                        href={item.href}
+                        className="hover:text-gray-900 text-base text-gray-500"
+                      >
+                        {item.name}
                       </Link>
                     </li>
                   ))}
@@ -168,22 +175,27 @@ export default function Footer() {
                   <p>Fri: 8 AM - 12 PM </p>
                   <p>Sat - Sun: Closed </p>
                 </address>
-                <Link href="mailto:info@drchandramouli.com">
-                  <a
-                    href="mailto:info@drchandramouli.com"
-                    className="hover:text-gray-900 text-base text-gray-500 underline"
-                  >
-                    info@drchandramouli.com
-                  </a>
+                <Link
+                  href="mailto:info@drchandramouli.com"
+                  className="hover:text-gray-900 text-base text-gray-500 underline"
+                >
+                  info@drchandramouli.com
                 </Link>
                 <br />
-                <Link href="tel:530-244-4471">
-                  <a
-                    href="tel:530-244-4471"
-                    className="hover:text-gray-900 text-base text-gray-500 underline"
-                  >
-                    +1 (530) 244-4471
-                  </a>
+                <span className="text-base text-gray-500">Phone: </span>
+                <Link
+                  href="tel:530-244-4471"
+                  className="hover:text-gray-900 text-base text-gray-500 underline"
+                >
+                  +1 (530) 244-4471
+                </Link>
+                <br />
+                <span className="text-base text-gray-500">Fax: </span>
+                <Link
+                  href="tel:530-244-1407"
+                  className="hover:text-gray-900 text-base text-gray-500 underline"
+                >
+                  +1 (530) 244-1407
                 </Link>
               </div>
             </div>
@@ -191,8 +203,8 @@ export default function Footer() {
               <iframe
                 title="map with directions"
                 frameBorder="0"
-                className="h-72 overflow-hidden w-72"
-                src="https://www.google.com/maps/embed/v1/place?q=1555+East+St+Redding,+California+96001&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                className="aspect-square overflow-hidden rounded-lg w-full"
+                src="https://maps.google.com/maps?q=1555+East+St+STE+100,+Redding,+CA+96001&output=embed"
               ></iframe>
             </div>
           </div>
@@ -200,13 +212,11 @@ export default function Footer() {
         <div className="border-gray-200 border-t mt-12 pt-8">
           <p className="text-base text-gray-400 xl:text-center">
             Created by{' '}
-            <Link href="https://ladderdesigns.co">
-              <a
-                className="font-bold hover:text-gray-500 underline"
-                href="https://ladderdesigns.co"
-              >
-                Ladder Designs
-              </a>
+            <Link
+              href="https://ladderdesigns.co"
+              className="font-bold hover:text-gray-500 underline"
+            >
+              Ladder Designs
             </Link>{' '}
             &copy; {new Date().getFullYear()}. All rights reserved.
           </p>
