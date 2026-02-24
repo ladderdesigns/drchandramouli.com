@@ -1,10 +1,9 @@
-
 # drchandramouli.com
 
-*The public-facing website for the cardiology practice of Dr. B.V. Chandramouli* 
-
+_The public-facing website for the cardiology practice of Dr. B.V. Chandramouli_
 
 ## Table of Contents
+
 - [Description](#description)
 - [Technologies](#technologies)
 - [Deployment](#deployment)
@@ -18,11 +17,11 @@ dr.chandramouli.com is the public-facing website for Dr. B.V. Chandramouli's car
 
 ## Technologies
 
-* React
-* Next.js
-* TypeScript
-* TailwindCSS
-* Netlify
+- React
+- Next.js
+- TypeScript
+- TailwindCSS
+- Netlify
 
 ## Deployment
 
@@ -41,7 +40,6 @@ To run a local instance of the Netlify CMS server:
 To view the project open `http://localhost:3000`.
 
 This website can be reached at [drchandramouli.com](https://drchandramouli.com).
-
 
 ## License
 
