@@ -1,9 +1,13 @@
-import { Disclosure } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/outline';
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import fs from 'fs';
 import matter from 'gray-matter';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Background from '../components/Background';
 import Hero from '../components/Hero';
@@ -29,12 +33,6 @@ interface Props {
 }
 
 export default function OurServices({ services }: Props) {
-  useEffect(() => {
-    services.sort((a, b) => {
-      return a.data.id - b.data.id;
-    });
-  }, [services]);
-
   return (
     <>
       <Seo templateTitle="Our Services" />
@@ -43,26 +41,26 @@ export default function OurServices({ services }: Props) {
         <section className="">
           <Hero
             title="Our Services"
-            description="Redding’s Premier Cardiology Services"
+            description="Redding's Premier Cardiology Services"
           />
           <Background image="pattern2.png" width={300} height={300}>
             <div className="py-16 w-full">
               <div className="max-w-md mx-auto px-4 py-8 relative sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-                <div className="bg-white divide-gray-200 divide-y-2 max-w-3xl mx-auto p-6 relative rounded-xl shadow-sm">
-                  <h2 className="font-semibold text-2xl text-center tracking-tight sm:text-3xl">
+                <div className="bg-white max-w-3xl mx-auto p-6 relative rounded-xl shadow-sm">
+                  <h2 className="border-b-2 border-gray-200 pb-6 font-semibold text-2xl text-center tracking-tight sm:text-3xl">
                     What we provide
                   </h2>
-                  <dl className="divide-gray-200 divide-y mt-6 space-y-6">
+                  <dl className="mt-6">
                     {services.map((service) => (
                       <Disclosure
                         as="div"
                         key={service.data.id}
-                        className="pt-6"
+                        className="border-t border-gray-200 py-6 first:border-t-0 first:pt-0"
                       >
                         {({ open }) => (
                           <>
                             <dt className="text-lg">
-                              <Disclosure.Button className="flex items-start justify-between text-gray-400 text-left w-full">
+                              <DisclosureButton className="flex items-start justify-between text-gray-400 text-left w-full">
                                 <span className="font-medium text-gray-900">
                                   {service.data.name}
                                 </span>
@@ -75,30 +73,32 @@ export default function OurServices({ services }: Props) {
                                     aria-hidden="true"
                                   />
                                 </span>
-                              </Disclosure.Button>
+                              </DisclosureButton>
                             </dt>
-                            <Disclosure.Panel as="dd" className="my-2 pr-12">
+                            <DisclosurePanel as="dd" className="my-2 pr-12">
                               <p className="pb-2 text-base text-gray-500 whitespace-pre-wrap">
                                 {service.data.desc}
                               </p>
                               {/* Only show the video link if a video exists for that service */}
                               {service.data.link && (
-                                <Link href={service.data.link}>
-                                  <a className="pr-4 text-blue-500 underline">
-                                    Read more
-                                  </a>
+                                <Link
+                                  href={service.data.link}
+                                  className="pr-4 text-blue-500 underline"
+                                >
+                                  Read more
                                 </Link>
                               )}
 
                               {/* Only show the video link if a video exists for that service */}
                               {service.data.video && (
-                                <Link href={service.data.video}>
-                                  <a className="text-blue-500 underline">
-                                    Watch video
-                                  </a>
+                                <Link
+                                  href={service.data.video}
+                                  className="text-blue-500 underline"
+                                >
+                                  Watch video
                                 </Link>
                               )}
-                            </Disclosure.Panel>
+                            </DisclosurePanel>
                           </>
                         )}
                       </Disclosure>
@@ -117,18 +117,20 @@ export default function OurServices({ services }: Props) {
 export async function getStaticProps() {
   const files = fs.readdirSync(`${process.cwd()}/content/our-services`);
 
-  const services = files.map((filename) => {
-    const markdownWithMetadata = fs
-      .readFileSync(`${process.cwd()}/content/our-services/${filename}`)
-      .toString();
+  const services = files
+    .map((filename) => {
+      const markdownWithMetadata = fs
+        .readFileSync(`${process.cwd()}/content/our-services/${filename}`)
+        .toString();
 
-    const { data } = matter(markdownWithMetadata);
+      const { data } = matter(markdownWithMetadata);
 
-    return {
-      slug: filename.replace('.md', ''),
-      data,
-    };
-  });
+      return {
+        slug: filename.replace('.md', ''),
+        data,
+      };
+    })
+    .sort((a, b) => a.data.id - b.data.id);
 
   return {
     props: {

@@ -1,138 +1,96 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Disclosure } from '@headlessui/react';
+'use client';
+
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+const navLinks = [
+  { href: '/our-services', label: 'Our Services' },
+  { href: '/patient-forms', label: 'Patient Forms' },
+  { href: '/about-us', label: 'About Us' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/faq', label: 'FAQ' },
+];
 
 export default function Navbar() {
+  const router = useRouter();
+
+  function isActive(href: string) {
+    return router.pathname.startsWith(href);
+  }
+
   return (
-    <Disclosure as="nav" className="bg-red-800 shadow">
+    <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div className="flex h-28 justify-between relative">
-              <div className="absolute flex inset-y-0 items-center right-4 sm:hidden">
-                {/* Mobile menu button */}
-                <Disclosure.Button className="focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-inset hover:bg-gray-100 hover:text-gray-500 inline-flex items-center justify-center p-2 rounded-md text-gray-400">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <svg
-                      className="h-6 w-6"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        className={'inline-flex'}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M4 6h16M4 12h16M4 18h16"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="h-6 w-6"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        className={'inline-flex'}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch">
-                <div className="hidden items-center sm:flex sm:space-x-24">
-                  <Link href="/our-services">
-                    <a className="border-white focus:font-bold focus:underline hover:text-gray-300 inline-flex items-center pt-1 px-1 text-md text-white">
-                      Our Services
-                    </a>
-                  </Link>
-
-                  <Link href="/patient-forms">
-                    <a className="border-transparent focus:font-bold focus:underline hover:border-gray-300 hover:text-gray-300 inline-flex items-center pt-1 px-1 text-md text-white">
-                      Patient Forms
-                    </a>
-                  </Link>
-
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 justify-between">
+              <div className="flex">
+                <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
-                    <a className="hover:opacity-75">
-                      <Image
-                        src="/logo.svg"
-                        alt="Chandramouli logo"
-                        width={65}
-                        height={65}
-                      ></Image>
-                    </a>
-                  </Link>
-
-                  <Link href="/about-us">
-                    <a className="border-transparent focus:font-bold focus:underline hover:border-gray-300 hover:text-gray-300 inline-flex items-center pt-1 px-1 text-md text-white">
-                      About Us
-                    </a>
-                  </Link>
-
-                  <Link href="/contact">
-                    <a className="border-transparent focus:font-bold focus:underline hover:border-gray-300 hover:text-gray-300 inline-flex items-center pt-1 px-1 text-md text-white">
-                      Contact
-                    </a>
-                  </Link>
-                  <Link href="/faq">
-                    <a className="border-transparent focus:font-bold focus:underline hover:border-gray-300 hover:text-gray-300 inline-flex items-center pt-1 px-1 text-md text-white">
-                      FAQ
-                    </a>
+                    <Image
+                      src="/logo2.svg"
+                      alt="logo"
+                      width={40}
+                      height={40}
+                      className="h-10 w-auto"
+                    />
                   </Link>
                 </div>
+                <div className="hidden sm:ml-6 sm:space-x-8 lg:flex">
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`border-b-2 font-medium hover:border-red-500 hover:text-gray-700 inline-flex items-center pt-1 px-1 text-md ${
+                        isActive(link.href)
+                          ? 'border-red-500 text-gray-900'
+                          : 'border-transparent text-gray-500'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="-mr-2 flex items-center lg:hidden">
+                {/* Mobile menu button */}
+                <DisclosureButton className="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500 hover:bg-gray-100 hover:text-gray-500 inline-flex items-center justify-center p-2 rounded-md text-gray-400">
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </DisclosureButton>
               </div>
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="pb-4 pt-2 space-y-1">
-              {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-              <Disclosure.Button
-                as="a"
-                href="/our-services"
-                className="bg-indigo-50 block border-indigo-500 border-l-4 font-medium pl-3 pr-4 py-2 text-base text-white"
-              >
-                Our Services
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="/patient-forms"
-                className="block border-l-4 border-transparent font-medium hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 pl-3 pr-4 py-2 text-base text-white"
-              >
-                Patient Forms
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="/about-us"
-                className="block border-l-4 border-transparent font-medium hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 pl-3 pr-4 py-2 text-base text-white"
-              >
-                About Us
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="/contact"
-                className="block border-l-4 border-transparent font-medium hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 pl-3 pr-4 py-2 text-base text-white"
-              >
-                Contact
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="/faq"
-                className="block border-l-4 border-transparent font-medium hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 pl-3 pr-4 py-2 text-base text-white"
-              >
-                FAQ
-              </Disclosure.Button>
+          <DisclosurePanel className="lg:hidden">
+            <div className="pb-3 pt-2 space-y-1">
+              {navLinks.map((link) => (
+                <DisclosureButton
+                  key={link.href}
+                  as={Link}
+                  href={link.href}
+                  className={`block border-l-4 font-medium pl-3 pr-4 py-2 text-base ${
+                    isActive(link.href)
+                      ? 'bg-red-50 border-red-500 text-red-700'
+                      : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+                  }`}
+                >
+                  {link.label}
+                </DisclosureButton>
+              ))}
             </div>
-          </Disclosure.Panel>
+          </DisclosurePanel>
         </>
       )}
     </Disclosure>

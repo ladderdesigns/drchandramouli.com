@@ -1,5 +1,7 @@
-import { Disclosure } from '@headlessui/react';
-import { DownloadIcon, SearchIcon } from '@heroicons/react/outline';
+import {
+  ArrowDownTrayIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline';
 import * as React from 'react';
 
 import Seo from '@/components/Seo';
@@ -24,12 +26,6 @@ export default function PatientForms() {
       name: 'Nuclear Stress Test',
       href: '/patient-forms/nuclear-stress-test.pdf',
     },
-    // add this when we have the actual office directions from Dr. Chan
-    // {
-    //   id: 3,
-    //   name: 'office-directions',
-    //   href: '/patient-forms/office-directions.pdf',
-    // },
   ];
 
   // decided to leave a link to Medtronic here and removed from everywhere
@@ -48,88 +44,83 @@ export default function PatientForms() {
         <section className="">
           <Hero
             title="Patient Forms"
-            description="Redding’s Premier Cardiology Services"
+            description="Redding's Premier Cardiology Services"
           />
           <Background image="pattern2.png" width={300} height={300}>
             <div className="my-auto py-16 w-full">
               <div className="max-w-md mx-auto px-4 py-8 relative sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-                <div className="bg-white divide-gray-200 divide-y-2 max-w-3xl mx-auto p-6 relative rounded-xl shadow-sm">
-                  <h2 className="font-semibold text-2xl text-center tracking-tight sm:text-3xl">
+                <div className="bg-white max-w-3xl mx-auto p-6 relative rounded-xl shadow-sm">
+                  <h2 className="border-b-2 border-gray-200 pb-6 font-semibold text-2xl text-center tracking-tight sm:text-3xl">
                     Download forms below:
                   </h2>
-                  <dl className="divide-gray-200 divide-y mt-6 space-y-6">
+                  <dl className="mt-6">
                     {items.map((file) => (
-                      <Disclosure as="div" key={file.id} className="pt-6">
-                        {() => (
-                          <>
-                            <dt className="text-lg" id={file.name}>
-                              <Disclosure.Button className="flex items-start justify-between text-gray-400 text-left w-full">
-                                <span className="font-medium text-gray-900">
-                                  {file.name}
-                                </span>
-                                <span className="flex h-7 items-center ml-6">
-                                  <a href={file.href} download>
-                                    <button
-                                      type="button"
-                                      className="bg-blue-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium hover:bg-blue-700 inline-flex items-center leading-4 px-3 py-2 rounded-md shadow-sm text-sm text-white"
-                                    >
-                                      Download
-                                      <DownloadIcon
-                                        className="-mr-0.5 h-4 ml-2 w-4"
-                                        aria-hidden="true"
-                                      />
-                                    </button>
-                                  </a>
-                                </span>
-                              </Disclosure.Button>
-                            </dt>
-                          </>
-                        )}
-                      </Disclosure>
+                      <div
+                        key={file.id}
+                        className="border-t border-gray-200 py-6 first:border-t-0 first:pt-0 last:pb-0"
+                      >
+                        <dt className="text-lg" id={file.name}>
+                          <div className="flex items-center justify-between text-gray-400 text-left w-full">
+                            <span className="font-medium text-gray-900">
+                              {file.name}
+                            </span>
+                            <span className="flex h-7 items-center ml-6">
+                              <a
+                                href={file.href}
+                                download
+                                className="bg-blue-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium hover:bg-blue-700 inline-flex items-center leading-4 px-3 py-2 rounded-md shadow-sm text-sm text-white"
+                              >
+                                Download
+                                <ArrowDownTrayIcon
+                                  className="-mr-0.5 h-4 ml-2 w-4"
+                                  aria-hidden="true"
+                                />
+                              </a>
+                            </span>
+                          </div>
+                        </dt>
+                      </div>
                     ))}
                   </dl>
                 </div>
               </div>
               <div className="max-w-md mx-auto px-4 py-8 relative sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-                <div className="bg-white divide-gray-200 divide-y-2 max-w-3xl mx-auto p-6 relative rounded-xl shadow-sm">
-                  <h2 className="font-semibold text-2xl text-center tracking-tight sm:text-3xl">
+                <div className="bg-white max-w-3xl mx-auto p-6 relative rounded-xl shadow-sm">
+                  <h2 className="border-b-2 border-gray-200 pb-6 font-semibold text-2xl text-center tracking-tight sm:text-3xl">
                     Useful links:
                   </h2>
-                  <dl className="divide-gray-200 divide-y mt-6 space-y-6">
+                  <dl className="mt-6">
                     {items2.map((file) => (
-                      <Disclosure as="div" key={file.id} className="pt-6">
-                        {() => (
-                          <>
-                            <dt className="text-lg" id={file.name}>
-                              <Disclosure.Button className="flex items-start justify-between text-gray-400 text-left w-full">
-                                <span className="font-medium text-gray-900">
-                                  {file.name}
+                      <div
+                        key={file.id}
+                        className="border-t border-gray-200 py-6 first:border-t-0 first:pt-0 last:pb-0"
+                      >
+                        <dt className="text-lg" id={file.name}>
+                          <div className="flex items-center justify-between text-gray-400 text-left w-full">
+                            <span className="font-medium text-gray-900">
+                              {file.name}
+                            </span>
+                            <span className="flex h-7 items-center ml-6">
+                              <a
+                                href={file.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-blue-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium hover:bg-blue-700 inline-flex items-center leading-4 px-3 py-2 rounded-md shadow-sm text-sm text-white"
+                              >
+                                <span className="hidden md:block">
+                                  {' '}
+                                  Visit Website{' '}
                                 </span>
-                                <span className="flex h-7 items-center ml-6">
-                                  <a href={file.href} download>
-                                    <button
-                                      type="button"
-                                      className="bg-blue-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-medium hover:bg-blue-700 inline-flex items-center leading-4 px-3 py-2 rounded-md shadow-sm text-sm text-white"
-                                    >
-                                      <span className="hidden md:block">
-                                        {' '}
-                                        Visit Website{' '}
-                                      </span>
-                                      <span className="block md:hidden">
-                                        Website
-                                      </span>
-                                      <SearchIcon
-                                        className="-mr-0.5 h-4 ml-2 w-4"
-                                        aria-hidden="true"
-                                      />
-                                    </button>
-                                  </a>
-                                </span>
-                              </Disclosure.Button>
-                            </dt>
-                          </>
-                        )}
-                      </Disclosure>
+                                <span className="block md:hidden">Website</span>
+                                <MagnifyingGlassIcon
+                                  className="-mr-0.5 h-4 ml-2 w-4"
+                                  aria-hidden="true"
+                                />
+                              </a>
+                            </span>
+                          </div>
+                        </dt>
+                      </div>
                     ))}
                   </dl>
                 </div>

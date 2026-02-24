@@ -1,4 +1,8 @@
-import { MailIcon, PhoneIcon, PrinterIcon } from '@heroicons/react/outline';
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  PrinterIcon,
+} from '@heroicons/react/24/outline';
 
 export default function ContactForm() {
   return (
@@ -86,7 +90,7 @@ export default function ContactForm() {
               <div className="mt-3">
                 <dt className="sr-only">Email</dt>
                 <dd className="flex">
-                  <MailIcon
+                  <EnvelopeIcon
                     className="flex-shrink-0 h-6 text-gray-400 w-6"
                     aria-hidden="true"
                   />
