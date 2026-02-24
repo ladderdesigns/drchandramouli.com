@@ -85,8 +85,8 @@ export default function FAQ() {
       className="max-w-md mx-auto px-4 py-8 relative rounded-xl sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8"
       id="faq"
     >
-      <div className="bg-white divide-gray-200 divide-y-2 max-w-7xl mx-auto px-4 py-16 rounded-xl shadow-sm sm:px-6 sm:py-24 lg:px-8">
-        <h2 className="font-semibold text--gray-900 text-3xl tracking-tight sm:text-4xl">
+      <div className="bg-white max-w-7xl mx-auto px-4 py-16 rounded-xl shadow-sm sm:px-6 sm:py-24 lg:px-8">
+        <h2 className="border-b-2 border-gray-200 pb-6 font-semibold text-gray-900 text-3xl tracking-tight sm:text-4xl">
           Frequently asked questions
         </h2>
         <div className="mt-6 pt-10">
