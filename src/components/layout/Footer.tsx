@@ -213,7 +213,7 @@ export default function Footer() {
           <p className="text-base text-gray-400 xl:text-center">
             Created by{' '}
             <Link
-              href="https://ladderdesigns.co"
+              href="https://ladderdesigns.netlify.app"
               className="font-bold hover:text-gray-500 underline"
             >
               Ladder Designs
